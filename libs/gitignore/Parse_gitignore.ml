@@ -64,6 +64,12 @@ let is_anchored_pattern (pat : Glob.Pattern.t) =
   | Any_subpath :: _ -> true
   | pat -> contains_nontrailing_slash pat
 
+let gitignore_glob_conf : M.conf =
+  {
+    (* Gitignore allows '*' to match dot files unlike e.g. Bash *)
+    glob_period = true;
+  }
+
 (*
    Parse and compile a gitignore pattern.
 
@@ -82,7 +88,7 @@ let parse_pattern ~source ~anchor str : M.compiled_pattern =
     if is_anchored_pattern pat then Glob.Pattern.append anchor pat
     else Glob.Pattern.append anchor (Any_subpath :: pat)
   in
-  M.compile ~source absolute_pattern
+  M.compile ~conf:gitignore_glob_conf ~source absolute_pattern
 
 let parse_line ~anchor source_name source_kind line_number line_contents =
   if is_ignored_line line_contents then None

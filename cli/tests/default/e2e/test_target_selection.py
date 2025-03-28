@@ -83,7 +83,7 @@ class Expect:
 PROJECT = GitProject(
     name="semgrep-test-project1",
     url="https://github.com/semgrep/semgrep-test-project1.git",
-    commit="e0c5109b96ec52a5d972fc0bb96d60f1c343cfd9",
+    commit="1b5195816e4137ddbf3fb08e5872af8fb0020efd",
 )
 
 
@@ -189,6 +189,8 @@ COMMON_EXPECTATIONS = [
             "src/quote'/hello.py",
             "src/space !/hello.py",
             "src/🚀.py",
+            # sanity check for dotfiles/
+            "dotfiles/not-excluded",
         ],
     ),
     Expect(
@@ -206,6 +208,11 @@ COMMON_EXPECTATIONS = [
             "src/symlink.py",
             "src/semgrepignored-via-include.py",
             "linux/link-to-file-in-dir-without-read-perm",
+            # in Gitignore, wildcards can match leading periods
+            "dotfiles/excluded.py",
+            "dotfiles/.excluded.py",
+            "dotfiles/_excluded.rb",
+            "dotfiles/.excluded.rb",
         ],
     ),
     # accepted differences between pysemgrep and osemgrep

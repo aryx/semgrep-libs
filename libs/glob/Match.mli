@@ -18,10 +18,26 @@ type loc = {
 [@@deriving show]
 (** The location of a pattern, for logging and troubleshooting. *)
 
-val compile : source:loc -> Pattern.t -> compiled_pattern
+type conf = { glob_period : bool }
+(** Options for interpreting glob patterns.
+
+  The options with the [glob_] prefix correspond to
+  the man page for glob(3). We don't support all the options but at least
+  we support those needed to handle Gitignore files.
+
+  glob_period: allow a leading period to be matched by metacharacters.
+  By default, metacharacters can't match a leading period.
+*)
+
+val default_conf : conf
+(** Default options as per glob(3). *)
+
+val compile : ?conf:conf -> source:loc -> Pattern.t -> compiled_pattern
 (** Compiles the pattern into something efficient (e.g., a regex). The
     [source] should be the original glob pattern before parsing. It's used
-    only for debugging purposes. *)
+    only for debugging purposes.
+
+*)
 
 val run : compiled_pattern -> string -> bool
 (** Match a path against a pattern:
