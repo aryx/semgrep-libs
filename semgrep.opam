@@ -83,6 +83,7 @@ depends: [
   "js_of_ocaml-lwt" {= "5.8.2"}
   "integers_stubs_js"
   "git-unix"
+  "ounit2"
   "odoc" {with-doc}
 ]
 build: [

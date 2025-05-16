@@ -14,7 +14,9 @@
  (preprocess
   (pps ppx_profiling))
  ; 'byte' is for ocamldebug
- (modes native byte))
+ ; TODO: restore byte, but does not work on macOS I get a
+ ; linking error about a missing unix_waitpid, weird
+ (modes native ))
 
 ; use flags.sh to generate the OS specific build flags
 
@@ -61,5 +63,8 @@
   ; osemgrep as "semgrep"
   (Main.exe as semgrep)
   ; useful to debug semgrep, see ../../debug and ocamldebug
-  (Main.bc as semgrep-core.bc)
-  (Main.bc as osemgrep.bc)))
+  ;TODO: commented because I've removed byte above because of
+  ; some weird linking errors on macos
+  ;(Main.bc as semgrep-core.bc)
+  ;(Main.bc as osemgrep.bc)
+  ))

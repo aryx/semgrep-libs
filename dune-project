@@ -201,10 +201,10 @@ parsers, especially ocamlyacc/menhir based parsers.
   (synopsis "XXX")
   (description "XXX")
 )
-(package (name parser_c)
-  (synopsis "XXX")
-  (description "XXX")
-)
+;(package (name parser_c)
+;  (synopsis "XXX")
+;  (description "XXX")
+;)
 (package (name parser_cpp)
   (synopsis "XXX")
   (description "XXX")
@@ -337,10 +337,10 @@ parsers, especially ocamlyacc/menhir based parsers.
   (synopsis "XXX")
   (description "XXX")
 )
-(package (name parser_vue)
-  (synopsis "XXX")
-  (description "XXX")
-)
+;(package (name parser_vue)
+;  (synopsis "XXX")
+;  (description "XXX")
+;)
 (package (name parser_yaml)
   (synopsis "XXX")
   (description "XXX")
@@ -548,6 +548,8 @@ For more information see https://semgrep.dev
     ; make our GHA opam cache useless. We might need to install here instead
     ; packages that would avoid this effect.
     git-unix
+    ; TODO: remove used just for pcre2/test
+    ounit2
   )
 )
 

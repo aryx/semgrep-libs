@@ -845,4 +845,4 @@ let main (caps : Cap.all_caps) (argv : string array) : unit =
   UCommon.main_boilerplate (fun () ->
       Common.finalize
         (fun () -> with_exception_trace (fun () -> main_exn caps argv))
-        (fun () -> !Hooks.exit |> List.iter (fun f -> f ())))
+        (fun () -> !Hooks_.exit |> List.iter (fun f -> f ())))
