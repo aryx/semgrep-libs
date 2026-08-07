@@ -14,11 +14,6 @@
 
 ;; Packages
 
-(package (name TCB)
-  (synopsis "Trusted Computing Base: capability types for OCaml")
-  (description "Capability types (Cap.ml) enforcing restricted I/O access across a codebase.")
-)
-
 (package
   (name commons)
   (version 1.8.0)

@@ -6,6 +6,7 @@
 ;  (flags (:standard -open TCB -open Commons_TCB))
   (flags (:standard -open No_TCB))
   (libraries
+     caps caps.tcb
      fpath
      bos
      uuidm

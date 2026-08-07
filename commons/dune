@@ -8,7 +8,7 @@
    (re_export commons.regexps)
    (re_export commons.core)
    commons.unsafe
-   TCB
+   caps caps.tcb
    ; stdlib
    str
    unix
