@@ -1,1 +1,5 @@
-*.opam
+# claude: the generated .opam files are committed rather than ignored.
+# Consumers of this repo need them in order to install its dependencies,
+# and having them regenerate the files with dune first is a chicken-and-egg
+# problem, since dune is itself one of the dependencies those files declare.
+#*.opam
