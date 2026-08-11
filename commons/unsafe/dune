@@ -10,6 +10,12 @@
    unix
    ; external libs
    bos
+   ; claude: UCmd.mli refers to Rresult.R.msg directly, so it must be listed
+   ; here. It used to compile only because bos 0.2.x depended on rresult and
+   ; made the module transitively visible; bos 0.3.0 dropped that dependency
+   ; in favour of the stdlib Result and the build then failed with
+   ; "Unbound module Rresult".
+   rresult
    astring
    re
    logs

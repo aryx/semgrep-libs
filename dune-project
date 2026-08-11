@@ -28,7 +28,9 @@ a few other projects developed at r2c.
     (dune (>= "3.2.0" ))
     (ANSITerminal (>= "0.8.4"))
     (alcotest (>= "1.5.0"))
-    (cmdliner (>= "1.1.1" ))
+    ; claude: < 2.0.0 because cmdliner 2.x changed the API used in
+    ; Cmdliner_.ml, which then fails to typecheck.
+    (cmdliner (and (>= "1.1.1") (< "2.0.0")))
     (logs (>= "0.7.0" ))
     (yojson (>= "1.7.0"))
     (re (>= "1.10.4"))
@@ -40,6 +42,31 @@ a few other projects developed at r2c.
     (digestif (>= "1.0.0"))
     uri
     bos
+    ; claude: the rest of this list was missing, although the dune files in
+    ; this package have always required it. It went unnoticed because a
+    ; developer switch already had everything installed; a fresh
+    ; "opam install --deps-only" does not, and the build then fails on
+    ; whichever one it reaches first (sexplib, in practice).
+    rresult
+    sexplib
+    ppx_sexp_conv
+    ; needed to *build* commons.base, not merely to test it: that library
+    ; declares (inline_tests).
+    ppx_inline_test
+    ppx_deriving_yojson
+    fpath
+    astring
+    fmt
+    uuidm
+    ocolor
+    semver
+    timedesc
+    memtrace
+    atdgen-runtime
+    testo
+    lwt
+    lwt_ppx
+    alcotest-lwt
   )
 )
 
