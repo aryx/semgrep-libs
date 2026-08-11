@@ -14,10 +14,13 @@
 )
 
 (ocamllex Lexer)
-; Use menhir-wrapper instead of (menhir ...) to suppress known conflicts
-; and catch regressions. See semgrep-pfff-langs/scripts/menhir-wrapper for details.
-; Was: (menhir (modules Parser) (flags --unused-tokens --explain --fixed-exception))
-(rule
- (targets Parser.ml Parser.mli)
- (deps Parser.mly)
- (action (run %{workspace_root}/semgrep-pfff-langs/scripts/menhir-wrapper Parser.mly)))
+(menhir (modules Parser) (flags --unused-tokens --explain --fixed-exception))
+; alt: Use menhir-wrapper instead of (menhir ...) to suppress known conflicts
+; and catch regressions. See semgrep-pfff-langs/scripts/menhir-wrapper for
+; details, but then it make semgrep-pfff-libs depend on semgrep-pfff-langs
+; alt: move menhir-wrapper in semgrep-pfff-libs/scripts
+;alt:
+;(rule
+; (targets Parser.ml Parser.mli)
+; (deps Parser.mly)
+; (action (run %{workspace_root}/semgrep-pfff-langs/scripts/menhir-wrapper Parser.mly)))
