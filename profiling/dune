@@ -6,6 +6,11 @@
  (libraries
    unix
    commons
-   process_limits ; for Time_limit.Timeout special handling
+   ; claude: process_limits was listed here "for Time_limit.Timeout special
+   ; handling", but nothing in Profiling.ml refers to it - the only mention
+   ; of Timeout is a commented-out TODO. Dropping it removes the chain
+   ; process_limits -> tracing -> tracing.unix -> opentelemetry,
+   ; opentelemetry-client-ocurl, ambient-context-lwt, lwt and system libcurl,
+   ; none of which is linked into any client of Profiling.
  )
 )
